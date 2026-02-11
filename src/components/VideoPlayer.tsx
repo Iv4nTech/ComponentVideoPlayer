@@ -9,15 +9,16 @@ interface Props {
 export const VideoPlayer = ({src}: Props) => {
     
     const videoRef = useRef<HTMLVideoElement>(null);
-    const video = videoRef.current;
-
+    
     const [isPlay, setPlay] = useState(false);
-
+    
+    
     const handlePlay = () => {
         setPlay(!isPlay);
     }
-
+    
     useEffect(():void => {
+        const video = videoRef.current;
         if (!video) return;
         if (isPlay) {
             video.play();
