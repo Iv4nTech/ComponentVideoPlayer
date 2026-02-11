@@ -15,22 +15,20 @@ export const VideoPlayer = ({src}: Props) => {
 
     const handlePlay = () => {
         setPlay(!isPlay);
-        console.log(isPlay);
     }
 
     useEffect(():void => {
-        if (isPlay && video) {
-            video.pause();
-        } else if (video) {
+        if (!video) return;
+        if (isPlay) {
             video.play();
-
+        } else {
+            video.pause();
         }
 
     }, [isPlay]); 
+    
     return <>
-
         <video ref={videoRef} loop playsInline src={src}></video>
-        {isPlay ? <button onClick={handlePlay}>Play</button>: <button onClick={handlePlay}>Pause</button>}
-        
+        {isPlay ? <button onClick={handlePlay}>Pause</button>: <button onClick={handlePlay}>Play</button>}
     </>
 }
